@@ -32,6 +32,19 @@
                 </h3>
               </div><!-- /.card-header -->
               <div class="card-body">
+
+              <div class="row">
+                  <div class="col-3">
+                    <input type="text" class="form-control" placeholder=".col-3">
+                  </div>
+                  <div class="col-4">
+                    <input type="text" class="form-control" placeholder=".col-4">
+                  </div>
+                  <div class="col-5">
+                    <input type="text" class="form-control" placeholder=".col-5">
+                  </div>
+                </div>
+
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
