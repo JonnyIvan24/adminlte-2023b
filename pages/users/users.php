@@ -47,13 +47,21 @@
                       <td>1.</td>
                       <td>Juan</td>
                       <td>juan@email.com</td>
-                      <td>Editar eliminar</td>
+                      <td>
+                        <button class="btn btn-success" onclick="editar('Juan', 'juan@email.com')">Editar</button>
+                        <br><br>
+                        <button class="btn btn-danger" onclick="eliminar('Juan')">Eliminar</button>
+                      </td>
                     </tr>
                     <tr>
                       <td>2.</td>
                       <td>Ana</td>
                       <td>ana@email.com</td>
-                      <td></td>
+                      <td>
+                      <button class="btn btn-success">Editar</button>
+                        <br><br>
+                        <button class="btn btn-danger" onclick="eliminar('Ana')">Eliminar</button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -69,6 +77,65 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <script>
+    function eliminar(usuario) {
+        Swal.fire({
+            title: "¿Estas seguro de eliminar al usuario " + usuario + "?",
+            text: "No se pueden revertir los cambios",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // aquí definimos la petición para eliminar el usario en el backend
+
+                Swal.fire({
+                    title: "Usuario " + usuario + " eliminado",
+                    icon: "success",
+                    position: "top",
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true
+                })
+            }
+        })
+    }
+
+    function editar(usuario, correo) {
+        Swal.fire({
+            title: "Editar usuario " + usuario,
+            showCancelButton: true,
+            input:'text',
+            inputValue: correo,
+            inputLabel: 'Correo',
+            confirmButtonColor: "green",
+            confirmButtonText: "Editar",
+            cancelButtonText: "Cancelar",
+            preConfirm: async (nuevoCorreo) => {
+                correo = nuevoCorreo
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                // aquí definimos la petición para eliminar el usario en el backend
+
+                Swal.fire({
+                    title: "Nuevo correo " + correo + " editado",
+                    icon: "success",
+                    position: "top",
+                    showConfirmButton: false,
+                    timer: 2500,
+                    toast: true
+                })
+            }
+        })
+    }
+  </script>
 
 <?php
     include("../../layouts/pages/footer.html")

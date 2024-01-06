@@ -32,6 +32,7 @@
                 </h3>
               </div><!-- /.card-header -->
               <div class="card-body">
+                <button class="btn btn-danger" onclick="mensaje()">Cancelar</button>
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -43,6 +44,16 @@
     </section>
     <!-- /.content -->
   </div>
+
+    <script>
+        function mensaje() {
+            Swal.fire({
+                title: "Buen trabajo",
+                text: "Diste clic en el butón",
+                icon: "success"
+            });   
+        }
+    </script>
 
 <?php
     include("layouts/footer.html")
