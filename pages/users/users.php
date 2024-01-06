@@ -33,6 +33,13 @@
               </div><!-- /.card-header -->
               <div class="card-body p-0">
 
+                <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+                </div>
+
               <table class="table table-striped">
                   <thead>
                     <tr>
@@ -115,8 +122,20 @@
             confirmButtonText: "Editar",
             cancelButtonText: "Cancelar",
             html: `
-                <input id="nombre" class="swal2-input" value="${usuario}">
-                <input id="correo" class="swal2-input" value="${correo}">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="nombre" class="col-sm-3 col-form-label">Usuario</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="nombre" value="${usuario}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="correo" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="correo" value="${correo}">
+                        </div>
+                    </div>
+                </div>
             `,
             preConfirm: () => {
                 return [
