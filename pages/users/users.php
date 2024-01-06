@@ -58,7 +58,7 @@
                       <td>Ana</td>
                       <td>ana@email.com</td>
                       <td>
-                      <button class="btn btn-success">Editar</button>
+                      <button class="btn btn-success" onclick="editar('Ana', 'ana@email.com')">Editar</button>
                         <br><br>
                         <button class="btn btn-danger" onclick="eliminar('Ana')">Eliminar</button>
                       </td>
@@ -90,6 +90,7 @@
             confirmButtonText: "Sí, eliminar",
             cancelButtonText: "Cancelar"
         }).then((result) => {
+            console.log(result)
             if (result.isConfirmed) {
 
                 // aquí definimos la petición para eliminar el usario en el backend
@@ -106,34 +107,36 @@
         })
     }
 
-    function editar(usuario, correo) {
-        Swal.fire({
+    async function editar(usuario, correo) {
+        const { value: valores } = await Swal.fire({
             title: "Editar usuario " + usuario,
             showCancelButton: true,
-            input:'text',
-            inputValue: correo,
-            inputLabel: 'Correo',
             confirmButtonColor: "green",
             confirmButtonText: "Editar",
             cancelButtonText: "Cancelar",
-            preConfirm: async (nuevoCorreo) => {
-                correo = nuevoCorreo
+            html: `
+                <input id="nombre" class="swal2-input" value="${usuario}">
+                <input id="correo" class="swal2-input" value="${correo}">
+            `,
+            preConfirm: () => {
+                return [
+                    document.getElementById('nombre').value,
+                    document.getElementById('correo').value
+                ]
             }
-        }).then((result) => {
-            if (result.isConfirmed) {
+        })
 
-                // aquí definimos la petición para eliminar el usario en el backend
-
-                Swal.fire({
-                    title: "Nuevo correo " + correo + " editado",
+        if (valores) {
+            Swal.fire({
+                    title: "Usuario " + usuario + " Editado",
+                    text: `Se edito el nombre ${valores[0]} y el correo ${valores[1]}`,
                     icon: "success",
                     position: "top",
                     showConfirmButton: false,
                     timer: 2500,
-                    toast: true
-                })
-            }
-        })
+                }) 
+        }
+        
     }
   </script>
 
